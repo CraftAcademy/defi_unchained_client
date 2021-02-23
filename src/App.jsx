@@ -1,9 +1,10 @@
-import React from 'react'
+import React from 'react';
+import MarketCapChart from './components/MarketCapChart'
 
 const App = () => {
   return (
     <div>
-
+<MarketCapChart />
     </div>
   );
 }

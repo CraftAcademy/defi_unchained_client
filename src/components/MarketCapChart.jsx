@@ -1,11 +1,18 @@
-import React from 'react'
+import React, { Component } from 'react';
+import {getMarketCapData} from '../modules/DataCenter'
 
-const MarketCapChart = () => {
-  return (
-    <div>
-      
-    </div>
-  )
+class MarketCapChart extends React.Component {
+  componentDidMount() {
+    debugger
+  getMarketCapData()
+  }
+  render() {
+    return (
+      <div>
+        HELLO LUCAS
+      </div>
+    )
+  }
 }
 
-export default MarketCapChart
+export default MarketCapChart;
