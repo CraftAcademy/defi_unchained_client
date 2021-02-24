@@ -11,5 +11,10 @@ const getMarketCapData = async () => {
   return response.data
 }
 
-export { getMarketCapData };
+const getCoinData = async () => {
+  let response = await axios.get('/api/currencies')
+  return response.data
+}
+
+export { getMarketCapData, getCoinData };
 
