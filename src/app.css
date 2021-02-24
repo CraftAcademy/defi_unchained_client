@@ -8,3 +8,9 @@
   width: 500px!important;
   text-align: center;
 }
+
+.ui.card img {
+  width: 30px;
+  height: 30px;
+  padding-left: 10px;
+}

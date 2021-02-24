@@ -6,12 +6,12 @@ import { Grid } from 'semantic-ui-react';
 
 const App = () => {
   return (
-    <Grid textAlign="center">
+    <Grid centered textAlign="center">
       <Grid.Row>
         <MarketCapCard />
       </Grid.Row>
-      <Grid.Row columns={3}>
-        <CryptoCard/>
+      <Grid.Row data-cy="crypto-cards"columns={3}>
+        <CryptoCard />
       </Grid.Row>
     </Grid>
   );
