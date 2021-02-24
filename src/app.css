@@ -1,0 +1,10 @@
+* {
+  margin: 0;
+  padding: 0
+}
+
+.market-card {
+  margin-top: 50px!important;
+  width: 500px!important;
+  text-align: center;
+}
