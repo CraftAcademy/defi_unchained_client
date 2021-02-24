@@ -9,6 +9,7 @@ class MarketCapChart extends React.Component {
   componentDidMount = async () => {
     let response = await getMarketCapData()
     this.setState({market_data: response.market_data})
+    debugger
   }
 
   render() {
