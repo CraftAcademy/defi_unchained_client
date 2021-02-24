@@ -22,13 +22,20 @@ describe('displays info about Market Cap', () => {
     })
 
     it('displays a chart', () => {
-      cy.wait(1000)
       cy.get('.market-card').within(() => {
         cy.get('[data-cy="market-chart"]').should('exist')
       })
     })
   })
   describe('unsuccessfully with bad response from API', () => {
+    beforeEach(() => {
+      cy.server()
+      cy.route({
+        method: "GET",
+        url: "http://localhost:3000/api/markets?*",
+        status: 500
+      })
+    })
     it('but still renders site and displays an error message ', () => {
       cy.visit("/")
       cy.get('.market-card').should('contain', 'Network Error')

@@ -1,5 +1,7 @@
 import axios from 'axios'
 
+axios.defaults.baseURL = 'http://localhost:3000'
+
 const getMarketCapData = async () => {
   let today = new Date()
   today.setDate(today.getDate() - 7)

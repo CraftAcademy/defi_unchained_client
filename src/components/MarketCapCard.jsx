@@ -13,7 +13,8 @@ class MarketCapCard extends React.Component {
       this.setState({ market_data: response.market_data })
     }
     catch (error) {
-      this.setState({ errorMessage: error.message })
+      debugger
+      this.setState({ errorMessage: error.message})
     }
   }
 
