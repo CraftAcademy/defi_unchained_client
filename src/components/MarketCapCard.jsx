@@ -19,21 +19,28 @@ class MarketCapCard extends React.Component {
 
   render() {
     const { market_data, errorMessage } = this.state
-    let dailyCap = market_data[1] ? (+market_data[market_data.length - 1].market_cap).toLocaleString() : errorMessage
-    let dailyChange = market_data[1] ? ((market_data[market_data.length - 1].market_cap / market_data[market_data.length - 2].market_cap - 1) * 100).toFixed(1) : errorMessage
+    let dailyCap = market_data[1] && (+market_data[market_data.length - 1].market_cap).toLocaleString()
+    let dailyChange = market_data[1] && ((market_data[market_data.length - 1].market_cap / market_data[market_data.length - 2].market_cap - 1) * 100).toFixed(1)
 
     return (
       <Card className="market-card">
         <Card.Content>
-          <Card.Header data-cy="daily-cap">
-            <span>Total Market Cap: </span><span>{dailyCap}</span>
-          </Card.Header>
-          <Card.Header data-cy="daily-change">
-            <span>Daily Change: </span><span>{dailyChange}%</span>
-          </Card.Header>
-          <div data-cy="market-chart" >
-            <MarketChart market_data={market_data} />
-          </div>
+          {market_data[1] ? (
+            <>
+              <Card.Header data-cy="daily-cap">
+                <span>Total Market Cap: </span><span>{dailyCap}</span>
+              </Card.Header>
+              <Card.Header data-cy="daily-change">
+                <span>Daily Change: </span><span>{dailyChange}%</span>
+              </Card.Header>
+              <div data-cy="market-chart" >
+                <MarketChart market_data={market_data} />
+              </div>
+            </>
+          ) : (
+              <Card.Header>{errorMessage}</Card.Header>
+          )
+        }
         </Card.Content>
       </Card>
     )

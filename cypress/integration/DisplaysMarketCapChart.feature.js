@@ -33,11 +33,9 @@ describe('displays info about Market Cap', () => {
       cy.visit("/")
     })
 
-    it('but displays an error message', () => {
+    it('but displays an error message if no data is received', () => {
       cy.visit("/")
-      cy.get('.market-card').within(() => {
-        cy.get('[data-cy="daily-cap"]').should('contain', 'Network Error')
-      })
+      cy.get('.market-card').should('contain', 'Network Error')
     })
   })
 })
