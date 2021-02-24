@@ -28,12 +28,8 @@ describe('displays info about Market Cap', () => {
       })
     })
   })
-  describe('unsuccessfully', () => {
-    it('but still renders site', () => {
-      cy.visit("/")
-    })
-
-    it('but displays an error message if no data is received', () => {
+  describe('unsuccessfully with bad response from API', () => {
+    it('but still renders site and displays an error message ', () => {
       cy.visit("/")
       cy.get('.market-card').should('contain', 'Network Error')
     })
