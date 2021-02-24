@@ -35,7 +35,6 @@ const MarketChart = ({ market_data }) => {
       }
     ]
   }
-
   return (
     <Line data={data} />
   )

@@ -7,9 +7,6 @@ const getMarketCapData = async () => {
 
   let response = await axios.get(`/api/markets?date=${today}`);
   return response.data
-
-
-
 }
 
 export { getMarketCapData };
