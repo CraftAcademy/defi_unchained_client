@@ -14,11 +14,6 @@ const App = () => {
       render: () =>
         <Tab.Pane attached={false}>
           <Grid centered textAlign="center">
-            {!authenticated && (
-              <Grid.Row>
-                <RegistrationModal setAuthenticated={setAuthenticated} />
-              </Grid.Row>
-            )}
             <Grid.Row>
               <MarketCapCard />
             </Grid.Row>
@@ -33,11 +28,6 @@ const App = () => {
       menuItem: 'Crypto News',
       render: () => <Tab.Pane attached={false}>
         <Grid centered textAlign="center">
-          {!authenticated && (
-            <Grid.Row>
-              <RegistrationModal setAuthenticated={setAuthenticated} />
-            </Grid.Row>
-          )}
         </Grid>
       </Tab.Pane>,
     },
@@ -45,14 +35,12 @@ const App = () => {
       menuItem: 'Buy Signals',
       render: () => <Tab.Pane attached={false}>
         <Grid centered textAlign="center">
-          {!authenticated && (
-            <Grid.Row>
-              <RegistrationModal setAuthenticated={setAuthenticated} />
-            </Grid.Row>
-          )}
         </Grid>
       </Tab.Pane>,
     },
+    {
+      menuItem: <RegistrationModal setAuthenticated={setAuthenticated}/>
+    }
   ]
 
   return (
