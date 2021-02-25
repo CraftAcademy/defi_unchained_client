@@ -10,7 +10,7 @@ const CryptoCards = () => {
     setTimeout(async () => {
       try {
         let response = await getCoinData()
-        setCurrencies(response.currencies)
+        setCurrencies(response)
       }
       catch (error) {
         setErrorMessage("Couldn't render information. Please update.")

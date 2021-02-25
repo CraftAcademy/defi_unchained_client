@@ -10,7 +10,7 @@ class MarketCapCard extends React.Component {
   componentDidMount = async () => {
     try {
       let response = await getMarketCapData()
-      this.setState({ market_data: response.market_data })
+      this.setState({ market_data: response})
     }
     catch (error) {
       this.setState({ errorMessage: error.message})
