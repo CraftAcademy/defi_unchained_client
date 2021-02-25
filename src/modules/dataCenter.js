@@ -8,8 +8,13 @@ const getMarketCapData = async () => {
   today = today.toISOString().split('today')[0]
 
   let response = await axios.get(`/api/markets?date=${today}`);
-  return response.data
+  return response.data.market_data 
 }
 
-export { getMarketCapData };
+const getCoinData = async () => {
+  let response = await axios.get('/api/currencies')
+  return response.data.currencies
+}
+
+export { getMarketCapData, getCoinData };
 

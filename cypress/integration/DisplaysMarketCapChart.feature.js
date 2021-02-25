@@ -33,12 +33,15 @@ describe('displays info about Market Cap', () => {
       cy.route({
         method: "GET",
         url: "http://localhost:3000/api/markets?*",
+        response: {
+          error_message: 'Request failed with status code 500'
+        },
         status: 500
       })
     })
     it('but still renders site and displays an error message ', () => {
       cy.visit("/")
-      cy.get('.market-card').should('contain', 'Network Error')
+      cy.get('.market-card').should('contain', 'Request failed with status code 500')
     })
   })
 })

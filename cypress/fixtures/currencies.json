@@ -1,0 +1,40 @@
+{
+  "currencies": [
+      {
+          "name": "Bitcoin",
+          "logo": "https://s3.us-east-2.amazonaws.com/nomics-api/static/images/currencies/btc.svg",
+          "price": 48839.76,
+          "change": 0.48
+      },
+      {
+          "name": "Ethereum",
+          "logo": "https://s3.us-east-2.amazonaws.com/nomics-api/static/images/currencies/eth.svg",
+          "price": 1593.62,
+          "change": 1.68
+      },
+      {
+          "name": "Cardano",
+          "logo": "https://s3.us-east-2.amazonaws.com/nomics-api/static/images/currencies/ada.svg",
+          "price": 1.03,
+          "change": 9.139999999999999
+      },
+      {
+          "name": "Polkadot",
+          "logo": "https://s3.us-east-2.amazonaws.com/nomics-api/static/images/currencies/DOTOLD.jpg",
+          "price": 32.76,
+          "change": -2.27
+      },
+      {
+          "name": "Ripple",
+          "logo": "https://s3.us-east-2.amazonaws.com/nomics-api/static/images/currencies/XRP.svg",
+          "price": 0.46,
+          "change": -0.83
+      },
+      {
+          "name": "Litecoin",
+          "logo": "https://s3.us-east-2.amazonaws.com/nomics-api/static/images/currencies/ltc.svg",
+          "price": 177.26,
+          "change": 1.0
+      }
+  ]
+}
