@@ -23,7 +23,7 @@ class MarketCapCard extends React.Component {
     let dailyChange = market_data[1] && ((market_data[market_data.length - 1].market_cap / market_data[market_data.length - 2].market_cap - 1) * 100).toFixed(1)
 
     return (
-      <Card key={1} className="market-card">
+      <Card className="market-card">
         <Card.Content>
           {market_data[1] ? (
             <>
