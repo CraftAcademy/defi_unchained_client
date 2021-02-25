@@ -1,0 +1,32 @@
+{
+  "market_data": [
+      {
+          "timestamp": "17/02",
+          "market_cap": "1604159134675"
+      },
+      {
+          "timestamp": "18/02",
+          "market_cap": "1613508864733"
+      },
+      {
+          "timestamp": "19/02",
+          "market_cap": "1730610943130"
+      },
+      {
+          "timestamp": "20/02",
+          "market_cap": "1738992386799"
+      },
+      {
+          "timestamp": "21/02",
+          "market_cap": "1771451012017"
+      },
+      {
+          "timestamp": "22/02",
+          "market_cap": "1668606522838"
+      },
+      {
+          "timestamp": "23/02",
+          "market_cap": "1459765421943"
+      }
+  ]
+}
