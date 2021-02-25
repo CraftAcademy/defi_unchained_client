@@ -16,5 +16,17 @@ const getCoinData = async () => {
   return response.data.currencies
 }
 
-export { getMarketCapData, getCoinData };
+const registration = async (credentials) => {
+  let response = await axios.post('/api/auth', credentials)
+  let userCredentials = {
+    uid: response.headers['uid'],
+    access_token: response.headers['access-token'],
+    client: response.headers['client'],
+    expiry: response.headers['expiry'],
+    token_type: 'Bearer'
+  }
+  return [response, userCredentials]
+}
+
+export { getMarketCapData, getCoinData, registration };
 

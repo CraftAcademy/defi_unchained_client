@@ -15,7 +15,7 @@ describe('User can access news tab', () => {
       cy.route({
         method: "POST",
         url: "http://localhost:3000/api/auth",
-        response: "fixture:register_user.json",
+        response: "fixture:registered_user.json",
         headers: {
           uid: 'user@email.com'
         }
