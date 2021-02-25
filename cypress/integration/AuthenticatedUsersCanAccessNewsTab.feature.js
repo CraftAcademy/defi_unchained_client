@@ -23,15 +23,19 @@ describe('User can access news tab', () => {
       cy.visit('/')
     })
 
-    it('user can register and then click on news tab', () => {
+    it('user can register and then see content of Crypto News tab', () => {
+      cy.get('.ui.pointing.secondary.menu').within(() => {
+        cy.get('a').eq(1).click()
+      })
       cy.get('[data-cy="register-button"]').click()
       cy.get('[data-cy="registration-form"]').within(() => {
         cy.get('[data-cy="email-field"]').type('user@email.com')
         cy.get('[data-cy="password-field"]').type('password')
         cy.get('[data-cy="password-confirmation-field"]').type('password')
         cy.get('[data-cy="submit"]').click()
-        cy.get('[data-cy="news-tab"]').click()
       })
+      cy.get('[data-cy="news-header"]').should('contain', 'Latest Crypto News')
+      cy.get('[data-cy="news-list-wrapper]').find('[data-cy="news-article"]').should('have.length', 7)
     })
   })
 })
