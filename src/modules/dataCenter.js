@@ -38,5 +38,17 @@ const registration = async (credentials) => {
   localStorage.setItem('credentials', JSON.stringify(userCredentials))
 }
 
-export { getMarketCapData, getCoinData, registration, getNewsData };
+const signIn = async (credentials) => {
+  let response = await axios.post('/api/auth/sign_in', credentials)
+  let userCredentials = {
+    uid: response.headers['uid'],
+    access_token: response.headers['access-token'],
+    client: response.headers['client'],
+    expiry: response.headers['expiry'],
+    token_type: 'Bearer'
+  }
+  localStorage.setItem('credentials', JSON.stringify(userCredentials))
+}
+
+export { getMarketCapData, getCoinData, registration, getNewsData, signIn };
 
