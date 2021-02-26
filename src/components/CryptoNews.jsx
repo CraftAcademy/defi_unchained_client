@@ -1,18 +1,19 @@
-import React, { useEffect } from 'react'
+import React, { useEffect, useState } from 'react'
 import { Grid, Header, Segment, Item } from 'semantic-ui-react'
 import { getNewsData } from '../modules/dataCenter'
 
 const CryptoNews = ({ authenticated }) => {
+  const [errorMessage, setErrorMessage] = useState()
 
-  useEffect(async () => {
-    try {
-      let response = await getNewsData()
+  useEffect(() => {
+    const asyncFetch = async () => {
+      try {
+        let response = await getNewsData()
+      }
+      catch (error) {
+      }
     }
-    catch (error) {
-      debugger
-    }
-
-  }, [])
+  }, [authenticated])
 
   return (
     <>
@@ -21,9 +22,16 @@ const CryptoNews = ({ authenticated }) => {
       </Grid.Row>
       <Grid.Row>
         <Segment data-cy="news-list-wrapper">
-          <Item.Group>
+          {authenticated ? (
+            <Item.Group>
+              HELLO YOURE IN!
+            </Item.Group>
+          ) : (
+              <Header data-cy="news-auth-error" >
+                You will need to login in order to see the news.
+              </Header>
+            )}
 
-          </Item.Group>
         </Segment>
       </Grid.Row>
     </>

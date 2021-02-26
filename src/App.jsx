@@ -45,7 +45,7 @@ const App = () => {
   ]
 
   return (
-    <Tab menu={{ secondary: true, pointing: true }} panes={panes} />
+    <Tab menu={{ secondary: true, pointing: true, renderActiveOnly: false }} panes={panes} />
   );
 }
 

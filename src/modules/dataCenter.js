@@ -19,10 +19,13 @@ const getCoinData = async () => {
 const getNewsData = async () => {
   let credentials = JSON.parse(localStorage.getItem('credentials'))
   let date = new Date()
+  date.setDate(date.getDate() - 5);
+  date = date.toLocaleDateString('en-CA')
   let response = await axios.get('/api/news',
     { date: date },
     { headers: credentials })
   debugger
+  return response.data.articles
 }
 
 const registration = async (credentials) => {

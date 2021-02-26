@@ -20,8 +20,8 @@ const CryptoCards = () => {
 
 const cryptoCards = currencies.map((coin, i) => {
   return (
-    <Grid.Column>
-      <Card key={i} data-cy="crypto-card">
+    <Grid.Column key={i}>
+      <Card data-cy="crypto-card">
         <Card.Content>
           <Card.Header data-cy="crypto-header">
             {coin.name}
