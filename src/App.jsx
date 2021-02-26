@@ -27,8 +27,8 @@ const App = () => {
     {
       menuItem: 'Crypto News',
       render: () => <Tab.Pane attached={false}>
-        <Grid centered textAlign="center">
-          <CryptoNews authenticated={authenticated}/>
+        <Grid >
+          <CryptoNews authenticated={authenticated} />
         </Grid>
       </Tab.Pane>,
     },
@@ -40,12 +40,12 @@ const App = () => {
       </Tab.Pane>,
     },
     {
-      menuItem: <RegistrationModal setAuthenticated={setAuthenticated}/>
+      menuItem: <RegistrationModal setAuthenticated={setAuthenticated} />
     }
   ]
 
   return (
-    <Tab menu={{ secondary: true, pointing: true, renderActiveOnly: false }} panes={panes} />
+    <Tab menu={{ secondary: true, pointing: true, color: 'teal' }} panes={panes} />
   );
 }
 

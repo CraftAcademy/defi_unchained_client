@@ -21,6 +21,7 @@ const getNewsData = async () => {
   let date = new Date()
   date.setDate(date.getDate() - 5);
   date = date.toLocaleDateString('en-CA')
+
   let response = await axios.get('/api/news',
     { date: date },
     { headers: credentials })
@@ -36,7 +37,7 @@ const registration = async (credentials) => {
     expiry: response.headers['expiry'],
     token_type: 'Bearer'
   }
-  return [response, userCredentials]
+  localStorage.setItem('credentials', JSON.stringify(userCredentials))
 }
 
 export { getMarketCapData, getCoinData, registration, getNewsData };

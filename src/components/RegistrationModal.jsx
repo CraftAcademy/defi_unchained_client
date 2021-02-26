@@ -14,8 +14,7 @@ const RegistrationModal = (props) => {
       password_confirmation: event.target.password_confirmation.value
     }
     try {
-      let [response, userCredentials] = await registration(credentials)
-      localStorage.setItem('credentials', JSON.stringify(userCredentials))
+      await registration(credentials)
       props.setAuthenticated(true)
       setOpen(false)
     }

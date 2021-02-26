@@ -4,40 +4,41 @@ import { getNewsData } from '../modules/dataCenter'
 
 const CryptoNews = ({ authenticated }) => {
   const [errorMessage, setErrorMessage] = useState()
-
   const [news, setNews] = useState([])
+
+  useEffect(async () => {
+    try {
+      let response = await getNewsData()
+      setNews(response)
+      debugger
+    }
+    catch (error) {
+    }
+  }, [authenticated])
+
   const newsList = news.map((article, i) => {
-    return(
-      <Item key={i}>
-        <Item.Image src={article.urlToImage}/>
+    return (
+      <Item key={i} data-cy="news-article">
+        <Item.Image src={article.urlToImage} />
         <Item.Content>
           <Item.Header>{article.title}</Item.Header>
-          <Item.Meta>{article.date}</Item.Meta>
+          <Item.Meta>Written on: {article.date}</Item.Meta>
           <Item.Description>{article.description}</Item.Description>
         </Item.Content>
       </Item>
     )
   })
-  useEffect(() => {
-    const asyncFetch = async () => {
-      try {
-        let response = await getNewsData()
-      }
-      catch (error) {
-      }
-    }
-  }, [authenticated])
 
   return (
     <>
-      <Grid.Row>
+      <Grid.Row centered>
         <Header data-cy="news-header">Latest Crypto News</Header>
       </Grid.Row>
-      <Grid.Row>
-        <Segment data-cy="news-list-wrapper">
+      <Grid.Row >
+        <Segment >
           {authenticated ? (
             <Item.Group>
-              HELLO YOURE IN!
+               {newsList}
             </Item.Group>
           ) : (
               <Header data-cy="news-auth-error" >
