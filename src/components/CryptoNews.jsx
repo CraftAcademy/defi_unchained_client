@@ -32,9 +32,6 @@ const CryptoNews = ({ authenticated }) => {
   return (
     <>
       <Grid.Row centered>
-        <Header data-cy="news-header">Latest Crypto News</Header>
-      </Grid.Row>
-      <Grid.Row >
         <Segment >
           {authenticated ? (
             <Item.Group>

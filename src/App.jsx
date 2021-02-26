@@ -4,7 +4,7 @@ import CryptoNews from './components/CryptoNews'
 import RegistrationModal from './components/RegistrationModal'
 import CryptoCard from './components/CryptoCards'
 import './app.css'
-import { Grid, Tab, Item } from 'semantic-ui-react';
+import { Grid, Tab, Item, Header } from 'semantic-ui-react';
 
 const App = () => {
   const [authenticated, setAuthenticated] = useState(false)
@@ -15,6 +15,7 @@ const App = () => {
       render: () =>
         <Tab.Pane attached={false}>
           <Grid centered textAlign="center">
+            <Header className="page-header" data-cy="news-header">Welcome to DeFi Unchained!</Header>
             <Grid.Row>
               <MarketCapCard />
             </Grid.Row>
@@ -26,18 +27,24 @@ const App = () => {
     },
     {
       menuItem: 'Crypto News',
-      render: () => <Tab.Pane attached={false}>
-        <Grid >
-          <CryptoNews authenticated={authenticated} />
-        </Grid>
-      </Tab.Pane>,
+      render: () =>
+        <Tab.Pane attached={false}>
+          <Grid>
+            <Grid.Row centered>
+              <Header textAlign="center" className="page-header" data-cy="news-header">Latest Crypto News</Header>
+            </Grid.Row>
+            <CryptoNews authenticated={authenticated} />
+          </Grid>
+        </Tab.Pane>,
     },
     {
       menuItem: 'Buy Signals',
-      render: () => <Tab.Pane attached={false}>
-        <Grid centered textAlign="center">
-        </Grid>
-      </Tab.Pane>,
+      render: () =>
+        <Tab.Pane attached={false}>
+          <Grid centered textAlign="center">
+            <Header className="page-header" data-cy="news-header">Your Daily Buy Signals!</Header>
+          </Grid>
+        </Tab.Pane>,
     },
     {
       menuItem: <RegistrationModal setAuthenticated={setAuthenticated} />
