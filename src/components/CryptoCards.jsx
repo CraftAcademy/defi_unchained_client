@@ -36,16 +36,7 @@ const CryptoCards = () => {
   })
   return (
     <>
-      {errorMessage ? <h2>{errorMessage} </h2> : (
-        <>
-          <Grid.Row textAlign="center" columns={3}>
-            {cryptoCards.slice(0, 3)}
-          </Grid.Row>
-          <Grid.Row columns={3}>
-            {cryptoCards.splice(3, 3)}
-          </Grid.Row>
-        </>
-      )}
+      {errorMessage ? <h2 style={{color: "white"}}>{errorMessage} </h2> : cryptoCards }
     </>
   )
 }

@@ -1,24 +1,18 @@
 import React, { useEffect, useState } from 'react'
-import { Grid, Header, Segment, Item, StepTitle } from 'semantic-ui-react'
+import { Grid, Header, Segment, Item } from 'semantic-ui-react'
 import { getNewsData } from '../modules/dataCenter'
 
 const CryptoNews = ({ authenticated }) => {
-  const [errorMessage, setErrorMessage] = useState()
   const [news, setNews] = useState([])
 
   useEffect(async () => {
-    try {
-      let response = await getNewsData()
-      setNews(response)
-    }
-    catch (error) {
-      setErrorMessage(error.message)
-    }
+    let response = await getNewsData()
+    setNews(response)
   }, [authenticated])
 
   const newsList = news.map((article, i) => {
     return (
-      <Item key={i} className="news-article" data-cy="news-article">
+      <Item as='a' href={article.url} key={i} className="news-article" data-cy="news-article">
         <Item.Image src={article.urlToImage} />
         <Item.Content>
           <Item.Header>{article.title}</Item.Header>
@@ -31,19 +25,25 @@ const CryptoNews = ({ authenticated }) => {
 
   return (
     <>
-      <Grid.Row className="news-wrapper">
-        <Segment >
-          {authenticated ? (
-            <Item.Group>
+    
+      {authenticated ? (
+          <Grid.Row className="news-wrapper">
+          <Segment >
+            <Item.Group divided>
               {newsList}
             </Item.Group>
-          ) : (
+          </Segment>
+           </Grid.Row >
+      ) : (
+          <Grid.Row centered>
+            <Segment >
               <Header data-cy="news-auth-error" >
-                {errorMessage ? errorMessage : 'You will need to login in order to see the news.'}
+                You will need to login in order to see the news.
               </Header>
-            )}
-        </Segment>
-      </Grid.Row>
+            </Segment>
+            </Grid.Row>
+          )}
+     
     </>
   )
 }

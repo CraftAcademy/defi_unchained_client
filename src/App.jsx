@@ -19,7 +19,9 @@ const App = () => {
             <Grid.Row columns={2}>
               <MarketCapCard />
             </Grid.Row>
-            <CryptoCard />
+            <Grid.Row columns={3} data-cy="crypto-cards">
+              <CryptoCard />
+            </Grid.Row>
           </Grid>
         </Tab.Pane>
     },

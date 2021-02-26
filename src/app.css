@@ -21,11 +21,6 @@ body {
   margin: 0 175px!important;
 }
 
-.news-article {
-  padding-bottom: 5px!important;
-  border-bottom: rgb(32, 31, 31) solid 1px!important;
-}
-
 .ui.segment.active.tab{
   background-color: transparent!important;
 }
