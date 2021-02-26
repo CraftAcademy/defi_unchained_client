@@ -21,6 +21,10 @@ body {
   margin: 0 175px!important;
 }
 
+.ui.grid.blurring {
+  min-height: 100vh!important;
+}
+
 .ui.segment.active.tab{
   background-color: transparent!important;
 }

@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react'
 import { getCoinData } from '../modules/dataCenter'
 import { Card, Grid } from 'semantic-ui-react';
 
-const CryptoCards = () => {
+const CryptoCards = (props) => {
   const [currencies, setCurrencies] = useState([])
   const [errorMessage, setErrorMessage] = useState()
 
@@ -15,6 +15,7 @@ const CryptoCards = () => {
       catch (error) {
         setErrorMessage("Couldn't render information. Please update.")
       }
+      props.setActive(false)
     }, 1500)
   }, [])
 

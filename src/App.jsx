@@ -1,49 +1,49 @@
-import React, { useState } from 'react';
+import React, { useState} from 'react';
 import MarketCapCard from './components/MarketCapCard'
 import CryptoNews from './components/CryptoNews'
 import RegistrationModal from './components/RegistrationModal'
 import CryptoCard from './components/CryptoCards'
 import './app.css'
-import { Grid, Tab, Item, Header } from 'semantic-ui-react';
+import { Grid, Tab, Header, Loader, Dimmer } from 'semantic-ui-react';
 
 const App = () => {
   const [authenticated, setAuthenticated] = useState(false)
+  const [active, setActive] = useState(true)
 
   const panes = [
     {
       menuItem: 'Crypto Info',
       render: () =>
         <Tab.Pane attached={false}>
-          <Grid centered textAlign="center">
+          <Dimmer.Dimmable as={Grid} centered blurring dimmed={active}>
             <Header className="page-header" data-cy="news-header">Welcome to DeFi Unchained!</Header>
+            <Dimmer active={active}>
+              <Loader size="large" content='Just a moment!' />
+            </Dimmer>
             <Grid.Row columns={2}>
               <MarketCapCard />
             </Grid.Row>
             <Grid.Row columns={3} data-cy="crypto-cards">
-              <CryptoCard />
+              <CryptoCard setActive={setActive} />
             </Grid.Row>
-          </Grid>
+          </Dimmer.Dimmable>
         </Tab.Pane>
     },
     {
       menuItem: 'Crypto News',
       render: () =>
-        <Tab.Pane attached={false}>
-          <Grid>
-            <Grid.Row centered>
-              <Header textAlign="center" className="page-header" data-cy="news-header">Latest Crypto News</Header>
-            </Grid.Row>
-            <CryptoNews authenticated={authenticated} />
-          </Grid>
+        <Tab.Pane as={Grid} attached={false}>
+          <Grid.Row centered>
+            <Header textAlign="center" className="page-header" data-cy="news-header">Latest Crypto News</Header>
+          </Grid.Row>
+          <CryptoNews authenticated={authenticated} />
         </Tab.Pane>,
     },
     {
       menuItem: 'Buy Signals',
       render: () =>
-        <Tab.Pane attached={false}>
-          <Grid centered textAlign="center">
-            <Header className="page-header" data-cy="news-header">Your Daily Buy Signals!</Header>
-          </Grid>
+        <Tab.Pane as={Grid} centered attached={false}>
+          <Header style={{ marginTop: 25 }} className="page-header" data-cy="news-header">Your Daily Buy Signals!</Header>
         </Tab.Pane>,
     },
     {
@@ -52,7 +52,14 @@ const App = () => {
   ]
 
   return (
-    <Tab menu={{ secondary: true, pointing: true, color: 'teal' }} panes={panes} />
+    <Tab
+      menu={{ secondary: true, pointing: true, color: 'teal' }}
+      panes={panes}
+      onTabChange={(event) => {
+        if (event.target.className === 'item') {
+          setActive(true)
+        }
+      }} />
   );
 }
 

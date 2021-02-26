@@ -75,7 +75,7 @@ describe('User can access news tab', () => {
       })
       cy.get('[data-cy="register-button"]').click()
       cy.get('[data-cy="registration-form"]').within(() => {
-        cy.get('[data-cy="email-field"]').type('user@email.com')
+        cy.get('[data-cy="email-field"]').type('test@email.com')
         cy.get('[data-cy="password-field"]').type('password')
         cy.get('[data-cy="password-confirmation-field"]').type('password')
         cy.get('[data-cy="submit"]').click()
