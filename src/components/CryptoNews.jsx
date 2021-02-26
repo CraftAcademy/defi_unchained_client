@@ -1,10 +1,23 @@
 import React, { useEffect, useState } from 'react'
-import { Grid, Header, Segment, Item } from 'semantic-ui-react'
+import { Grid, Header, Segment, Item, StepTitle } from 'semantic-ui-react'
 import { getNewsData } from '../modules/dataCenter'
 
 const CryptoNews = ({ authenticated }) => {
   const [errorMessage, setErrorMessage] = useState()
 
+  const [news, setNews] = useState([])
+  const newsList = news.map((article, i) => {
+    return(
+      <Item key={i}>
+        <Item.Image src={article.urlToImage}/>
+        <Item.Content>
+          <Item.Header>{article.title}</Item.Header>
+          <Item.Meta>{article.date}</Item.Meta>
+          <Item.Description>{article.description}</Item.Description>
+        </Item.Content>
+      </Item>
+    )
+  })
   useEffect(() => {
     const asyncFetch = async () => {
       try {

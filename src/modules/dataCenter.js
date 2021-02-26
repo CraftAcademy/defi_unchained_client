@@ -24,7 +24,6 @@ const getNewsData = async () => {
   let response = await axios.get('/api/news',
     { date: date },
     { headers: credentials })
-  debugger
   return response.data.articles
 }
 
