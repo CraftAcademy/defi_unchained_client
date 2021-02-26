@@ -69,7 +69,7 @@ const RegistrationModal = (props) => {
             </Segment>
           </Form>
           <Message>
-            Already have an account? <a href='/menu'>Sign In</a>
+            Already have an account? <a href='/'>Sign In</a>
           </Message>
         </Grid.Column>
       </Grid>

@@ -16,12 +16,10 @@ const App = () => {
         <Tab.Pane attached={false}>
           <Grid centered textAlign="center">
             <Header className="page-header" data-cy="news-header">Welcome to DeFi Unchained!</Header>
-            <Grid.Row>
+            <Grid.Row columns={2}>
               <MarketCapCard />
             </Grid.Row>
-            <Grid.Row data-cy="crypto-cards" columns={3}>
-              <CryptoCard />
-            </Grid.Row>
+            <CryptoCard />
           </Grid>
         </Tab.Pane>
     },
