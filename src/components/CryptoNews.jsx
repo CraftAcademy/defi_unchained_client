@@ -10,15 +10,15 @@ const CryptoNews = ({ authenticated }) => {
     try {
       let response = await getNewsData()
       setNews(response)
-      debugger
     }
     catch (error) {
+      setErrorMessage(error.message)
     }
   }, [authenticated])
 
   const newsList = news.map((article, i) => {
     return (
-      <Item key={i} data-cy="news-article">
+      <Item key={i} className="news-article" data-cy="news-article">
         <Item.Image src={article.urlToImage} />
         <Item.Content>
           <Item.Header>{article.title}</Item.Header>
@@ -31,18 +31,17 @@ const CryptoNews = ({ authenticated }) => {
 
   return (
     <>
-      <Grid.Row centered>
+      <Grid.Row className="news-wrapper">
         <Segment >
           {authenticated ? (
             <Item.Group>
-               {newsList}
+              {newsList}
             </Item.Group>
           ) : (
               <Header data-cy="news-auth-error" >
-                You will need to login in order to see the news.
+                {errorMessage ? errorMessage : 'You will need to login in order to see the news.'}
               </Header>
             )}
-
         </Segment>
       </Grid.Row>
     </>

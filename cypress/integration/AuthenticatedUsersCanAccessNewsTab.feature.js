@@ -22,7 +22,7 @@ describe('User can access news tab', () => {
       })
       cy.route({
         method: "GET",
-        url: "http://localhost:3000/api/news",
+        url: "http://localhost:3000/api/news?*",
         response: 'fixture:crypto_news.json',
       })
       cy.visit('/')
