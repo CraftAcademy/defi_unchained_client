@@ -8,12 +8,21 @@ const getMarketCapData = async () => {
   today = today.toISOString().split('today')[0]
 
   let response = await axios.get(`/api/markets?date=${today}`);
-  return response.data.market_data 
+  return response.data.market_data
 }
 
 const getCoinData = async () => {
   let response = await axios.get('/api/currencies')
   return response.data.currencies
+}
+
+const getNewsData = async () => {
+  let credentials = JSON.parse(localStorage.getItem('credentials'))
+  let date = new Date()
+  let response = await axios.get('/api/news',
+    { date: date },
+    { headers: credentials })
+  debugger
 }
 
 const registration = async (credentials) => {
@@ -28,5 +37,5 @@ const registration = async (credentials) => {
   return [response, userCredentials]
 }
 
-export { getMarketCapData, getCoinData, registration };
+export { getMarketCapData, getCoinData, registration, getNewsData };
 
