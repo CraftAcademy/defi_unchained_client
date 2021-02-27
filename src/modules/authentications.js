@@ -25,10 +25,13 @@ const signIn = async (credentials) => {
   localStorage.setItem('credentials', JSON.stringify(userCredentials))
 }
 
-const subscribe = async () => {
+const payWithStripe = async (stripeToken) => {
   let header_credentials = JSON.parse(localStorage.getItem('credentials'))
-  let response = await axios.post('/api/subscriptions', { params: '' }, { headers: header_credentials })
-  return response
+  let response = await axios.post(
+    '/api/subscriptions',
+    { stripeToken: stripeToken },
+    { headers: header_credentials })
+  return response.data
 }
 
 const isSubscribed = async () => {
@@ -48,4 +51,4 @@ const validateToken = async () => {
   }
 }
 
-export { registration, signIn, subscribe, isSubscribed, validateToken }
+export { registration, signIn, payWithStripe, isSubscribed, validateToken }

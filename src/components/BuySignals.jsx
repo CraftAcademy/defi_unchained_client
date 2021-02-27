@@ -1,29 +1,22 @@
 import React, { useState, useEffect } from 'react'
-import { Button, Grid, Segment, Card, Image, Header } from 'semantic-ui-react'
+import { Grid, Segment, Card, Image, Header } from 'semantic-ui-react'
+import BecomeSubscriber from './BecomeSubscriber'
 import { getBuySignal } from '../modules/dataCenter'
-import { subscribe, isSubscribed } from '../modules/authentications'
+import { isSubscribed } from '../modules/authentications'
+import { Elements } from 'react-stripe-elements'
 
 const BuySignals = ({ authenticated }) => {
   const [subscriber, setSubscriber] = useState(false)
   const [coin, setCoin] = useState()
   const [logo, setLogo] = useState()
 
-  const becomeSubscriber = async () => {
-    let response = await subscribe()
-    if (response.status === 200) {
-      setSubscriber(true)
-    }
-  }
-
   useEffect(() => {
     async function fetchData() {
       try {
         let response = await isSubscribed()
         setSubscriber(response)
-        debugger
         if (response === true) {
           let signal = await getBuySignal()
-          debugger
           setCoin(signal.coin)
           setLogo(signal.logo)
         }
@@ -40,21 +33,19 @@ const BuySignals = ({ authenticated }) => {
     <>
       {!authenticated ? (
         <Header style={{ color: "white" }}>Please login or make an account</Header>
-      ) : (
-          !subscriber ? (
-            <Button data-cy="subscribe" color="green" onClick={() => becomeSubscriber()}>Become Subscriber!</Button>
-          ) : (
-              <Header style={{ color: "white" }}>Welcome back ! <br></br>Today you should buy:</Header>
-            )
-        )}
-      <Grid.Row >
-        {subscriber && (
+      ) : subscriber ? (
+        <>
+          <Header style={{ color: "white" }}>Welcome!<br></br>Today you should buy:</Header>
           <Segment style={{ padding: 20 }} centered textAlign="center" data-cy="signal-wrapper" as={Card}>
             <Header data-cy="signal-coin">{coin}</Header>
             <Image size="small" data-cy="signal-logo" centered alt={coin} src={logo} />
           </Segment>
-        )}
-      </Grid.Row>
+        </>
+      ) : (
+            <Elements>
+              <BecomeSubscriber setSubscriber={setSubscriber} />
+            </Elements>
+          )}
     </>
   )
 }

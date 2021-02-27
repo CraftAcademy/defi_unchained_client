@@ -27,8 +27,8 @@ describe('Subscribe can get daily buy signals', () => {
         method: "POST",
         url: "http://localhost:3000/api/subscriptions",
         response: {
-          subscriber: true,
-          message: "Congratulations!"
+          paid: true,
+          message: "You are now a subscriber!"
         }
       })
       cy.get('.ui.pointing.secondary.menu').within(() => {
@@ -36,19 +36,54 @@ describe('Subscribe can get daily buy signals', () => {
       })
     })
 
-    it('Shows content when user is subscriber', () => {
-      cy.route({
-        method: "GET",
-        url: "http://localhost:3000/api/subscriptions",
-        response: {
-          subscriber: true
-        }
-      })
+    it('displays the subscriber form', () => {
       cy.get('[data-cy="subscribe"]').click()
-      cy.get('[data-cy="signal-wrapper"]').within(() => {
-        cy.get('[data-cy="signal-coin"]').should('contain', 'Ethereum')
-        cy.get('[data-cy="signal-logo"]').should('have.attr', 'src', 'https://s3.us-east-2.amazonaws.com/nomics-api/static/images/currencies/eth.svg')
+      cy.wait(1000)
+
+      cy.get('[data-cy="payment-form"]').within(() => {
+        cy.get('[data-cy="card-number"]').within(() => {
+          cy.get('iframe[name^="__privateStripeFrame"]').then($iframe => {
+            const $body = $iframe.contents().find('body')
+            cy.wrap($body)
+              .find('input[name="cardnumber"]')
+              .type('4242424242424242', { delay: 50 })
+          })
+        })
+        cy.get('[data-cy="card-expiry"]').within(() => {
+          cy.get('iframe[name^="__privateStripeFrame"]').then($iframe => {
+            const $body = $iframe.contents().find('body')
+            cy.wrap($body)
+              .find('input[name="exp-date"]')
+              .type('0424', { delay: 10 })
+          })
+        })
+        cy.get('[data-cy="card-cvc"]').within(() => {
+          cy.get('iframe[name^="__privateStripeFrame"]').then($iframe => {
+            const $body = $iframe.contents().find('body')
+            cy.wrap($body)
+              .find('input[name="cvc"]')
+              .type('424', { delay: 50 })
+          })
+        })
+        cy.get('[data-cy="submit-payment"]').click()
+        cy.get('[data-cy="payment-message]').should('contain', 'You are now a subscriber!')
       })
     })
+
+    // it('Shows content when user is subscriber', () => {
+    //   cy.route({
+    //     method: "GET",
+    //     url: "http://localhost:3000/api/subscriptions",
+    //     response: {
+    //       subscriber: true
+    //     }
+    //   })
+    //   cy.get('[data-cy="subscribe"]').click()
+    //   cy.get('[data-cy="signal-wrapper"]').within(() => {
+    //     cy.get('[data-cy="signal-coin"]').should('contain', 'Ethereum')
+    //     cy.get('[data-cy="signal-logo"]').should('have.attr', 'src', 'https://s3.us-east-2.amazonaws.com/nomics-api/static/images/currencies/eth.svg')
+    //   })
+    // })
+
   })
 })

@@ -17,6 +17,15 @@ body {
   color: teal!important;
 }
 
+.StripeElement {
+  margin: auto;
+  width: 50%;
+}
+
+.ui.center.aligned.segment.payment-wrapper {
+  margin: 0 25%
+}
+
 .news-wrapper {
   margin: 0 20%!important;
 }
