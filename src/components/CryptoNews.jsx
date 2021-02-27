@@ -25,15 +25,15 @@ const CryptoNews = ({ authenticated }) => {
 
   return (
     <>
-    
+
       {authenticated ? (
-          <Grid.Row className="news-wrapper">
-          <Segment >
-            <Item.Group divided>
-              {newsList}
-            </Item.Group>
-          </Segment>
-           </Grid.Row >
+        <Grid.Row column={1} >
+            <Segment className="news-wrapper">
+              <Item.Group divided>
+                {newsList}
+              </Item.Group>
+            </Segment>
+        </Grid.Row >
       ) : (
           <Grid.Row centered>
             <Segment >
@@ -41,9 +41,9 @@ const CryptoNews = ({ authenticated }) => {
                 You will need to login in order to see the news.
               </Header>
             </Segment>
-            </Grid.Row>
-          )}
-     
+          </Grid.Row>
+        )}
+
     </>
   )
 }
