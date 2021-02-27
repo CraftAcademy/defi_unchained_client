@@ -3,7 +3,7 @@ import { Button, Grid, Segment, Card, Image, Header } from 'semantic-ui-react'
 import { getBuySignal } from '../modules/dataCenter'
 import { subscribe } from '../modules/authentications'
 
-const BuySignals = () => {
+const BuySignals = ({ authenticated }) => {
   const [subscriber, setSubscriber] = useState(false)
   const [coin, setCoin] = useState()
   const [logo, setLogo] = useState()
@@ -25,21 +25,25 @@ const BuySignals = () => {
   })
 
   return (
-    <div>
-      {!subscriber ? (
-        <Button data-cy="subscribe" color="green" onClick={() => becomeSubscriber()}>Become Subscriber!</Button>
+    <>
+      {!authenticated ? (
+        <Header style={{ color: "white" }}>Please login or make an account</Header>
       ) : (
-          <Header style={{color: "white"}} >Welcome back {user}</Header>
+          !subscriber ? (
+            <Button data-cy="subscribe" color="green" onClick={() => becomeSubscriber()}>Become Subscriber!</Button>
+          ) : (
+              <Header style={{ color: "white" }}>Welcome back {user}. <br></br>Today you should buy:</Header>
+            )
         )}
       <Grid.Row >
         {subscriber && (
-          <Segment centered textAlign="center" data-cy="signal-wrapper" as={Card}>
-            <Image size="small" data-cy="signal-logo" alt={coin} src={logo} />
+          <Segment style={{ padding: 20 }} centered textAlign="center" data-cy="signal-wrapper" as={Card}>
             <Header data-cy="signal-coin">{coin}</Header>
+            <Image size="small" data-cy="signal-logo" alt={coin} src={logo} />
           </Segment>
         )}
       </Grid.Row>
-    </div>
+    </>
   )
 }
 
