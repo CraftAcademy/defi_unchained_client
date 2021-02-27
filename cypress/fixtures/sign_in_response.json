@@ -1,7 +1,7 @@
 {
   "data": {
-      "email": "test@gmail.com",
-      "uid": "test@gmail.com",
+      "email": "user@gmail.com",
+      "uid": "user@gmail.com",
       "id": 11,
       "provider": "email",
       "allow_password_change": false

@@ -34,7 +34,7 @@ describe('displays info about Market Cap', () => {
         method: "GET",
         url: "http://localhost:3000/api/markets?*",
         response: {
-          error_message: 'Request failed with status code 500'
+          errors: 'Request failed with status code 500'
         },
         status: 500
       })

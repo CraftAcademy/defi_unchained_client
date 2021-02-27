@@ -96,6 +96,7 @@ const RegistrationModal = (props) => {
               Already have an account?
              <br></br>
               <Button
+                data-cy="sign-in-button"
                 size="tiny"
                 color="green"
                 onClick={() => {

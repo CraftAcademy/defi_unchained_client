@@ -65,7 +65,7 @@ describe('User can access news tab', () => {
         url: "http://localhost:3000/api/auth/sign_in",
         response: "fixture:sign_in_response.json",
         headers: {
-          uid: 'test@email.com'
+          uid: 'user@email.com'
         }
       })
       cy.route({
@@ -74,14 +74,14 @@ describe('User can access news tab', () => {
         response: 'fixture:crypto_news.json',
       })
       cy.get('[data-cy="register-button"]').click()
+      cy.get('[data-cy="sign-in-button"]').click()
       cy.get('[data-cy="registration-form"]').within(() => {
-        cy.get('[data-cy="email-field"]').type('test@email.com')
+        cy.get('[data-cy="email-field"]').type('user@email.com')
         cy.get('[data-cy="password-field"]').type('password')
-        cy.get('[data-cy="password-confirmation-field"]').type('password')
         cy.get('[data-cy="submit"]').click()
       })
     })
-    
+
     it('user can register and then see content of Crypto News tab', () => {
       cy.get('[data-cy="news-header"]').should('contain', 'Latest Crypto News')
       cy.get('[data-cy="news-auth-error"]').should('not.exist')
@@ -106,7 +106,6 @@ describe('User can access news tab', () => {
       cy.get('[data-cy="registration-form"]').within(() => {
         cy.get('[data-cy="email-field"]').type('user@email.com')
         cy.get('[data-cy="password-field"]').type('password')
-        cy.get('[data-cy="password-confirmation-field"]').type('password')
         cy.get('[data-cy="submit"]').click()
       })
     })

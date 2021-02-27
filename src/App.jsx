@@ -1,5 +1,6 @@
 import React, { useState} from 'react';
 import MarketCapCard from './components/MarketCapCard'
+import BuySignals from './components/BuySignals'
 import CryptoNews from './components/CryptoNews'
 import RegistrationModal from './components/RegistrationModal'
 import CryptoCard from './components/CryptoCards'
@@ -44,6 +45,9 @@ const App = () => {
       render: () =>
         <Tab.Pane as={Grid} centered attached={false}>
           <Header style={{ marginTop: 25 }} className="page-header" data-cy="news-header">Your Daily Buy Signals!</Header>
+          <Grid.Row>
+            <BuySignals authenticated={ authenticated}/>
+          </Grid.Row>
         </Tab.Pane>,
     },
     {
