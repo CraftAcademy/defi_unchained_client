@@ -38,7 +38,7 @@ const RegistrationModal = (props) => {
       setSecondOpen(false)
     }
     catch (error) {
-      error.response ? (
+      error.response.data.errors ? (
         setErrorMessage(error.response.data.errors.full_messages)
       ) : setErrorMessage("Couldn't connect to the server! Please try again later!")
     }
@@ -53,7 +53,7 @@ const RegistrationModal = (props) => {
         }}
         onOpen={() => setOpen(true)}
         open={open}
-        trigger={<Button color="teal" data-cy="register-button">Register/Sign in</Button>}
+        trigger={<Button disabled={props.authenticated} color="teal" data-cy="register-button">Register/Sign in</Button>}
       >
         <Grid className="login-modal" textAlign='center' style={{ height: '100vh' }} verticalAlign='middle'>
           <Grid.Column style={{ maxWidth: 450 }}>

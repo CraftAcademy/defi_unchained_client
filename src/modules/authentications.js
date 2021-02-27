@@ -31,4 +31,10 @@ const subscribe = async () => {
   return response
 }
 
-export {registration,  signIn, subscribe}
+const isSubscribed = async () => {
+  let credentials = JSON.parse(localStorage.getItem('credentials'))
+  let response = await axios.get('/api/subscriptions', {headers: credentials})
+  return response.data.subscriber
+}
+
+export {registration,  signIn, subscribe, isSubscribed}

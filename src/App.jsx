@@ -49,7 +49,7 @@ const App = () => {
         </Tab.Pane>,
     },
     {
-      menuItem: <RegistrationModal setAuthenticated={setAuthenticated} />
+      menuItem: <RegistrationModal setAuthenticated={setAuthenticated} authenticated={authenticated}  />
     }
   ]
 
