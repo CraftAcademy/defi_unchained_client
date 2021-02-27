@@ -1,4 +1,5 @@
-import React, { useState} from 'react';
+import React, { useState, useEffect } from 'react';
+import { validateToken } from './modules/authentications'
 import MarketCapCard from './components/MarketCapCard'
 import BuySignals from './components/BuySignals'
 import CryptoNews from './components/CryptoNews'
@@ -10,6 +11,14 @@ import { Grid, Tab, Header, Loader, Dimmer } from 'semantic-ui-react';
 const App = () => {
   const [authenticated, setAuthenticated] = useState(false)
   const [active, setActive] = useState(true)
+
+  useEffect(() => {
+    async function fetchData(){
+    let response = await validateToken()
+      response && setAuthenticated(true)
+    }
+    fetchData()
+  }, [])
 
   const panes = [
     {
@@ -45,11 +54,11 @@ const App = () => {
       render: () =>
         <Tab.Pane as={Grid} centered attached={false}>
           <Header style={{ marginTop: 25 }} className="page-header" data-cy="news-header">Your Daily Buy Signals!</Header>
-            <BuySignals authenticated={ authenticated}/>
+          <BuySignals authenticated={authenticated} />
         </Tab.Pane>,
     },
     {
-      menuItem: <RegistrationModal setAuthenticated={setAuthenticated} authenticated={authenticated}  />
+      menuItem: <RegistrationModal setAuthenticated={setAuthenticated} authenticated={authenticated} />
     }
   ]
 

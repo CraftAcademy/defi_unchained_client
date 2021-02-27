@@ -37,12 +37,18 @@ describe('Subscribe can get daily buy signals', () => {
     })
 
     it('Shows content when user is subscriber', () => {
+      cy.route({
+        method: "GET",
+        url: "http://localhost:3000/api/subscriptions",
+        response: {
+          subscriber: true
+        }
+      })
       cy.get('[data-cy="subscribe"]').click()
       cy.get('[data-cy="signal-wrapper"]').within(() => {
         cy.get('[data-cy="signal-coin"]').should('contain', 'Ethereum')
         cy.get('[data-cy="signal-logo"]').should('have.attr', 'src', 'https://s3.us-east-2.amazonaws.com/nomics-api/static/images/currencies/eth.svg')
       })
     })
-
   })
 })

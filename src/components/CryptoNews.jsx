@@ -5,9 +5,14 @@ import { getNewsData } from '../modules/dataCenter'
 const CryptoNews = ({ authenticated }) => {
   const [news, setNews] = useState([])
 
-  useEffect(async () => {
-    let response = await getNewsData()
-    setNews(response)
+  useEffect(() => {
+    async function fetchData() {
+      let response = await getNewsData()
+      setNews(response)
+    }
+    if (authenticated) {
+      fetchData()
+    }
   }, [authenticated])
 
   const newsList = news.map((article, i) => {
@@ -28,11 +33,11 @@ const CryptoNews = ({ authenticated }) => {
 
       {authenticated ? (
         <Grid.Row column={1} >
-            <Segment className="news-wrapper">
-              <Item.Group divided>
-                {newsList}
-              </Item.Group>
-            </Segment>
+          <Segment className="news-wrapper">
+            <Item.Group divided>
+              {newsList}
+            </Item.Group>
+          </Segment>
         </Grid.Row >
       ) : (
           <Grid.Row centered>

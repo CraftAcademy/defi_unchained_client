@@ -15,17 +15,26 @@ const BuySignals = ({ authenticated }) => {
     }
   }
 
-  useEffect(async () => {
-    let response = await isSubscribed()
-    setSubscriber(response)
-    if (subscriber === true) {
-      let response = await getBuySignal()
-      setCoin(response.coin)
-      setLogo(response.logo)
+  useEffect(() => {
+    async function fetchData() {
+      try {
+        let response = await isSubscribed()
+        setSubscriber(response)
+        debugger
+        if (response === true) {
+          let signal = await getBuySignal()
+          debugger
+          setCoin(signal.coin)
+          setLogo(signal.logo)
+        }
+      }
+      catch (error) {
+      }
     }
-  })
-
-
+    if (authenticated) {
+      fetchData()
+    }
+  }, [authenticated, subscriber])
 
   return (
     <>

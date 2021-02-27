@@ -26,15 +26,26 @@ const signIn = async (credentials) => {
 }
 
 const subscribe = async () => {
-  let credentials = JSON.parse(localStorage.getItem('credentials'))
-  let response = await axios.post('/api/subscriptions', {params: ''} , {headers: credentials})
+  let header_credentials = JSON.parse(localStorage.getItem('credentials'))
+  let response = await axios.post('/api/subscriptions', { params: '' }, { headers: header_credentials })
   return response
 }
 
 const isSubscribed = async () => {
-  let credentials = JSON.parse(localStorage.getItem('credentials'))
-  let response = await axios.get('/api/subscriptions', {headers: credentials})
+  let header_credentials = JSON.parse(localStorage.getItem('credentials'))
+  let response = await axios.get('/api/subscriptions', { headers: header_credentials })
   return response.data.subscriber
 }
 
-export {registration,  signIn, subscribe, isSubscribed}
+const validateToken = async () => {
+  let header_credentials = JSON.parse(localStorage.getItem('credentials'))
+  try {
+    await axios.get('/api/auth/validate_token', { headers: header_credentials })
+    return true
+  }
+  catch (error) {
+    return false
+  }
+}
+
+export { registration, signIn, subscribe, isSubscribed, validateToken }
