@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import { registration, signIn } from '../modules/dataCenter'
+import { registration, signIn } from '../modules/authentications'
 import { Button, Modal, Form, Grid, Header, Message, Segment, Input } from 'semantic-ui-react'
 
 const RegistrationModal = (props) => {

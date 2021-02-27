@@ -1,7 +1,8 @@
 describe('Subscribe can get daily buy signals', () => {
-  describe('Successfully as valid subscribe', () => {
+  describe('Successfully as valid subscriber', () => {
     beforeEach(() => {
       cy.server()
+      cy.visit("/")
       cy.route({
         method: "POST",
         url: "http://localhost:3000/api/auth/sign_in",
@@ -25,8 +26,23 @@ describe('Subscribe can get daily buy signals', () => {
       cy.route({
         method: "POST",
         url: "http://localhost:3000/api/subscriptions",
-        response: "fixture:subscriber.json"
+        response: {
+          subscriber: true,
+          message: "Congratulations!"
+        }
+      })
+      cy.get('.ui.pointing.secondary.menu').within(() => {
+        cy.get('a').eq(2).click()
       })
     })
+
+    it('Shows content when user is subscriber', () => {
+      cy.get('[data-cy="subscribe"]').click()
+      cy.get('[data-cy="signal-wrapper"]').within(() => {
+        cy.get('[data-cy="signal-coin"]').should('contain', 'Ethereum')
+        cy.get('[data-cy="signal-logo"]').should('have.attr', 'src', 'https://s3.us-east-2.amazonaws.com/nomics-api/static/images/currencies/eth.svg')
+      })
+    })
+
   })
 })

@@ -45,9 +45,7 @@ const App = () => {
       render: () =>
         <Tab.Pane as={Grid} centered attached={false}>
           <Header style={{ marginTop: 25 }} className="page-header" data-cy="news-header">Your Daily Buy Signals!</Header>
-          <Grid.Row>
             <BuySignals authenticated={ authenticated}/>
-          </Grid.Row>
         </Tab.Pane>,
     },
     {

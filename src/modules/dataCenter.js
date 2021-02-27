@@ -2,6 +2,8 @@ import axios from 'axios'
 
 axios.defaults.baseURL = 'http://localhost:3000'
 
+let credentials = JSON.parse(localStorage.getItem('credentials'))
+
 const getMarketCapData = async () => {
   let today = new Date()
   today.setDate(today.getDate() - 7)
@@ -17,7 +19,6 @@ const getCoinData = async () => {
 }
 
 const getNewsData = async () => {
-  let credentials = JSON.parse(localStorage.getItem('credentials'))
   let today = new Date()
   today.setDate(today.getDate() - 5);
   let fiveDaysAgo = today.toLocaleDateString('en-CA')
@@ -26,29 +27,10 @@ const getNewsData = async () => {
   return response.data.articles
 }
 
-const registration = async (credentials) => {
-  let response = await axios.post('/api/auth', credentials)
-  let userCredentials = {
-    uid: response.headers['uid'],
-    access_token: response.headers['access-token'],
-    client: response.headers['client'],
-    expiry: response.headers['expiry'],
-    token_type: 'Bearer'
-  }
-  localStorage.setItem('credentials', JSON.stringify(userCredentials))
+const getBuySignal = async () => {
+  let response = await axios.get('/api/buy_signals', { headers: credentials })
+  return response.data.signal
 }
 
-const signIn = async (credentials) => {
-  let response = await axios.post('/api/auth/sign_in', credentials)
-  let userCredentials = {
-    uid: response.headers['uid'],
-    access_token: response.headers['access-token'],
-    client: response.headers['client'],
-    expiry: response.headers['expiry'],
-    token_type: 'Bearer'
-  }
-  localStorage.setItem('credentials', JSON.stringify(userCredentials))
-}
-
-export { getMarketCapData, getCoinData, registration, getNewsData, signIn };
+export { getMarketCapData, getCoinData, getNewsData, getBuySignal };
 
