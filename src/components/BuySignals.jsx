@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react'
-import { Grid, Segment, Card, Image, Header } from 'semantic-ui-react'
+import { Segment, Card, Grid, Image, Header } from 'semantic-ui-react'
 import BecomeSubscriber from './BecomeSubscriber'
 import { getBuySignal } from '../modules/dataCenter'
 import { isSubscribed } from '../modules/authentications'
@@ -32,7 +32,11 @@ const BuySignals = ({ authenticated }) => {
   return (
     <>
       {!authenticated ? (
-        <Header style={{ color: "white" }}>Please login or make an account</Header>
+        <Grid.Row centered>
+          <Segment >
+            <Header >Please login or make an account</Header>
+          </Segment>
+        </Grid.Row>
       ) : subscriber ? (
         <>
           <Header style={{ color: "white" }}>Welcome!<br></br>Today you should buy:</Header>

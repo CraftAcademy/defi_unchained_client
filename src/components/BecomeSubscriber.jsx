@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import { Button, Segment, Grid } from 'semantic-ui-react'
+import { Button, Segment} from 'semantic-ui-react'
 import { payWithStripe } from '../modules/authentications'
 import { injectStripe, CardNumberElement, CardExpiryElement, CardCVCElement } from 'react-stripe-elements'
 
