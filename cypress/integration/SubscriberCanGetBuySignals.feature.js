@@ -36,7 +36,7 @@ describe('Subscribe can get daily buy signals', () => {
       })
     })
 
-    it('displays the subscriber form', () => {
+    it('displays the subscriber form and subscribes successfully', () => {
       cy.get('[data-cy="subscribe"]').click()
       cy.wait(1000)
 
@@ -65,25 +65,33 @@ describe('Subscribe can get daily buy signals', () => {
               .type('424', { delay: 50 })
           })
         })
+        cy.route({
+          method: "GET",
+          url: "http://localhost:3000/api/subscriptions",
+          response: {
+            subscriber: true
+          }
+        })
         cy.get('[data-cy="submit-payment"]').click()
-        cy.get('[data-cy="payment-message]').should('contain', 'You are now a subscriber!')
       })
+      cy.get('[data-cy="welcome-subscriber"]').should('contain', 'Welcome!').and('contain', 'Today you should buy')
     })
 
-    // it('Shows content when user is subscriber', () => {
-    //   cy.route({
-    //     method: "GET",
-    //     url: "http://localhost:3000/api/subscriptions",
-    //     response: {
-    //       subscriber: true
-    //     }
-    //   })
-    //   cy.get('[data-cy="subscribe"]').click()
-    //   cy.get('[data-cy="signal-wrapper"]').within(() => {
-    //     cy.get('[data-cy="signal-coin"]').should('contain', 'Ethereum')
-    //     cy.get('[data-cy="signal-logo"]').should('have.attr', 'src', 'https://s3.us-east-2.amazonaws.com/nomics-api/static/images/currencies/eth.svg')
-    //   })
-    // })
+    it('Shows content when user is subscriber', () => {
+      cy.route({
+        method: "GET",
+        url: "http://localhost:3000/api/subscriptions",
+        response: {
+          subscriber: true
+        }
+      })
+      cy.get('a').eq(1).click()
+      cy.get('a').eq(2).click()
+      cy.get('[data-cy="signal-wrapper"]').within(() => {
+        cy.get('[data-cy="signal-coin"]').should('contain', 'Ethereum')
+        cy.get('[data-cy="signal-logo"]').should('have.attr', 'src', 'https://s3.us-east-2.amazonaws.com/nomics-api/static/images/currencies/eth.svg')
+      })
+    })
 
   })
 })

@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import { Button, Segment} from 'semantic-ui-react'
+import { Button, Segment, Grid, Header } from 'semantic-ui-react'
 import { payWithStripe } from '../modules/authentications'
 import { injectStripe, CardNumberElement, CardExpiryElement, CardCVCElement } from 'react-stripe-elements'
 
@@ -26,9 +26,14 @@ const BecomeSubscriber = (props) => {
   return (
     <>
       {!renderForm ? (
-        <Button data-cy="subscribe" color="green" onClick={() => setRenderForm(true)}>
-          Become Subscriber!
+        <Grid.Row centered>
+          <Segment >
+            <Header >You need to be a subscriber to get the buy signals</Header>
+            <Button data-cy="subscribe" color="green" onClick={() => setRenderForm(true)}>
+              Become Subscriber!
         </Button>
+          </Segment>
+        </Grid.Row>
       ) : (
           <Segment centered className="payment-wrapper" textAlign="center">
             <form data-cy="payment-form" onSubmit={(event) => subscribe(event)}>

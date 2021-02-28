@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react'
 import { getCoinData } from '../modules/dataCenter'
 import { Card, Grid } from 'semantic-ui-react';
 
-const CryptoCards = ({setActive}) => {
+const CryptoCards = ({ setActive }) => {
   const [currencies, setCurrencies] = useState([])
   const [errorMessage, setErrorMessage] = useState()
 
@@ -17,7 +17,7 @@ const CryptoCards = ({setActive}) => {
       }
       setActive(false)
     }, 1500)
-  }, [])
+  }, [setActive])
 
   const cryptoCards = currencies.map((coin, i) => {
     return (
@@ -37,7 +37,7 @@ const CryptoCards = ({setActive}) => {
   })
   return (
     <>
-      {errorMessage ? <h2 style={{color: "white"}}>{errorMessage} </h2> : cryptoCards }
+      {errorMessage ? <h2 style={{ color: "white" }}>{errorMessage} </h2> : cryptoCards}
     </>
   )
 }

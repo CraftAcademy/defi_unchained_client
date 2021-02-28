@@ -39,7 +39,7 @@ const BuySignals = ({ authenticated }) => {
         </Grid.Row>
       ) : subscriber ? (
         <>
-          <Header style={{ color: "white" }}>Welcome!<br></br>Today you should buy:</Header>
+          <Header data-cy="welcome-subscriber" style={{ color: "white" }}>Welcome!<br></br>Today you should buy:</Header>
           <Segment style={{ padding: 20 }} centered textAlign="center" data-cy="signal-wrapper" as={Card}>
             <Header data-cy="signal-coin">{coin}</Header>
             <Image size="small" data-cy="signal-logo" centered alt={coin} src={logo} />

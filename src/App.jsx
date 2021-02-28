@@ -32,6 +32,7 @@ const App = () => {
             </Dimmer>
             <Grid.Row columns={2}>
               <MarketCapCard />
+              
             </Grid.Row>
             <Grid.Row columns={3} data-cy="crypto-cards">
               <CryptoCard setActive={setActive} />
