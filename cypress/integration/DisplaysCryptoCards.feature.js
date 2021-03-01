@@ -41,7 +41,7 @@ describe('displays info about crypto coins', () => {
         method: "GET",
         url: "http://localhost:3000/api/currencies",
         response: {
-          error_message: "Couldn't render information. Please update"
+          errors: "Couldn't render information. Please update"
         },
         status: 500,
       })

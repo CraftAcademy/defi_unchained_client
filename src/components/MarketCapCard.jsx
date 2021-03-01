@@ -28,10 +28,10 @@ class MarketCapCard extends React.Component {
           {market_data[1] ? (
             <>
               <Card.Header data-cy="daily-cap">
-                <span>Total Market Cap: </span><span>{dailyCap}</span>
+                <span className="float-left">Total Market Cap: </span><span className="float-right">{dailyCap}</span>
               </Card.Header>
               <Card.Header data-cy="daily-change">
-                <span>Daily Change: </span><span>{dailyChange}%</span>
+                <span className="float-left">Daily Change: </span><span className="float-right">{dailyChange}%</span>
               </Card.Header>
               <div data-cy="market-chart" >
                 <MarketChart market_data={market_data} />
