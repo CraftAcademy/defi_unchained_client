@@ -74,6 +74,7 @@ describe('Subscribe can get daily buy signals', () => {
         })
         cy.get('[data-cy="submit-payment"]').click()
       })
+      cy.wait(1000)
       cy.get('[data-cy="welcome-subscriber"]').should('contain', 'Welcome!').and('contain', 'Today you should buy')
     })
 
