@@ -23,6 +23,8 @@
     "test": "react-scripts test",
     "eject": "react-scripts eject",
     "start:silent": "PORT=3001 BROWSER=none react-scripts start",
+    "cy:run": "cypress run",
+    "cy:integrate": "start-server-and-test start:silent http://localhost:3001/ cy:run",
     "cy:open": "cypress open",
     "cypress": "start-server-and-test start:silent http://localhost:3001/ cy:open"
   },
