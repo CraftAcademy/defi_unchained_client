@@ -13,4 +13,4 @@ blocks:
             - sem-version node 8
             - checkout
             - yarn install
-            - yarn test
+            - 'cy:integrate'
